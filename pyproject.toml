@@ -27,7 +27,6 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "License :: OSI Approved :: Apache Software License",
     "Operating System :: POSIX :: Linux",
     "Operating System :: MacOS",
     "Topic :: Software Development :: Testing",
@@ -49,4 +48,4 @@ include = ["ipynb_test*"]
 version = {attr = "ipynb_test.__version__"}
 
 [project.scripts]
-ipynb_test = "ipynb_test.notebook_test:main"
+ipynb_test = "ipynb_test.tester:run_tester"
