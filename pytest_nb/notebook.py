@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 from .cell import CodeCell, MarkdownCell
+import uuid
 import os.path
 
 class Notebook:
@@ -38,19 +39,23 @@ class Notebook:
 
             self.cells.append(cell)
 
+    def _generate_id(self, length: 5) -> str:
+        return uuid.uuid4().hex[:length]
+    
     def test(self, executor, seed: int, seed_numpy: bool, match_output: bool, continue_after_fail: bool) -> bool:
         """
 
         Returns whether the test passed.
         """
-        seed_code = f"import random;random.seed({seed});"
+        func_id = self._generate_id()
+        seed_code = f"from random import seed as seed_{func_id};seed_{func_id}({seed});"
         if seed_numpy:
-            numpy_seed_code = f"import numpy; numpy.random.seed({seed});"
+            numpy_seed_code = f"from numpy.random import seed as n_seed_{func_id}; n_seed_{func_id}({seed});"
             seed_code += numpy_seed_code
 
         executor(seed_code)
         print(f"{self.rel_path}", end=" ")
-        for cell in self.cells:
+        for cell in enumerate(self.cells):
 
             passed = cell.test(executor, match_output)
             if passed:
