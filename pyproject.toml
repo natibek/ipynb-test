@@ -3,7 +3,7 @@ requires = ["setuptools >= 61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ipynb-test"
+name = "pytest-nb"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 authors = [
@@ -18,6 +18,7 @@ keywords = [
 ]
 dependencies = [
     "jupyter_client==8.6.3",
+    "pytest==8.4.1",
 ]
 readme = "README.md"
 dynamic = ["version"]
@@ -35,17 +36,17 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/natibek/ipynb-test"
-Repository = "https://github.com/natibek/ipynb-test"
-Issues = "https://github.com/natibek/ipynb-test/issues"
-Readme = "https://github.com/natibek/ipynb-test/blob/main/README.md"
-Changelog = "https://github.com/natibek/ipynb-test/blob/main/CHANGELOG"
+Homepage = "https://github.com/natibek/pytest_nb"
+Repository = "https://github.com/natibek/pytest_nb"
+Issues = "https://github.com/natibek/pytest_nb/issues"
+Readme = "https://github.com/natibek/pytest_nb/blob/main/README.md"
+Changelog = "https://github.com/natibek/pytest_nb/blob/main/CHANGELOG"
 
 [tool.setuptools.packages.find]
-include = ["ipynb_test*"]
+include = ["pytest_nb*"]
 
 [tool.setuptools.dynamic]
-version = {attr = "ipynb_test.__version__"}
+version = {attr = "pytest_nb.__version__"}
 
 [project.scripts]
-ipynb_test = "ipynb_test.tester:run_tester"
+pytest_nb = "pytest_nb.tester:run_tester"
